@@ -2,12 +2,6 @@ import React from 'react';
 import { useLocalStorage } from './useLocalStorage';
 
 const TaskContext = React.createContext();
-const DFtasks = [
-  { id: 1, text: 'task 1', completed: false },
-  { id: 2, text: 'task 2', completed: false },
-  { id: 3, text: 'task 3', completed: false },
-  { id: 4, text: 'task 4', completed: false },
-];
 function TaskProvider(props) {
 
     const {
@@ -15,7 +9,7 @@ function TaskProvider(props) {
         saveItem: saveTask,
         loading,
         error,
-    } = useLocalStorage('TODOS_V3', DFtasks);
+    } = useLocalStorage('TODOS_V3', []);
 
     const [searchKey, setSearchKey] = React.useState('');
     const [openModal, setOpenModal] = React.useState(false);
@@ -39,26 +33,25 @@ function TaskProvider(props) {
     });
 
     const addTask = (text) => {
-        const newTasks = [...listTask];
-        newTasks.push({
-            completed : false,
-            text, 
-        });
-        saveTask(newTasks);
+         let newTasks = {
+             'text' : text,
+             'completed' :false
+         }
+        saveTask("POST", newTasks);
     };
 
     const completeTask = (text)=> {
         const taskIndex = getIndex(text);
-        const newTasks = [...listTask];
-        newTasks[taskIndex].completed = true;
-        saveTask(newTasks);
+        let updateTasks = {
+            'text' : text,
+            'completed' :true
+        }
+        saveTask("PUT",updateTasks, taskIndex);
     };
 
     const delateTask = (text) => {
         const taskIndex = getIndex(text);
-        const newTasks = [...listTask];
-        newTasks.splice(taskIndex, 1);
-        saveTask(newTasks);
+        saveTask("DELETE",null,taskIndex);
     };
 
     return (
