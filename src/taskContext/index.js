@@ -28,30 +28,23 @@ function TaskProvider(props) {
         })
     }
 
-    const getIndex = (text => {
-        return listTask.findIndex(task => task.text === text);
-    });
-
     const addTask = (text) => {
          let newTasks = {
              'text' : text,
-             'completed' :false
+             'completed' : false
          }
         saveTask("POST", newTasks);
     };
 
-    const completeTask = (text)=> {
-        const taskIndex = getIndex(text);
+    const completeTask = (id)=> {
         let updateTasks = {
-            'text' : text,
-            'completed' :true
+            'completed' : true
         }
-        saveTask("PUT",updateTasks, taskIndex);
+        saveTask("PUT",updateTasks,id);
     };
 
-    const delateTask = (text) => {
-        const taskIndex = getIndex(text);
-        saveTask("DELETE",null,taskIndex);
+    const delateTask = (id) => {
+        saveTask("DELETE",null,id);
     };
 
     return (

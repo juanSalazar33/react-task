@@ -27,14 +27,14 @@ function TaskForm(){
             <textarea
                 value = {newTaskValue}
                 onChange = {onChange}
-                placeholder = "Escribe una nueva tarea"
+                placeholder = "wrhite a new task"
             />
             <div className="TodoForm-buttonContainer">
                 <button
                 className="pushy__btn pushy__btn--lg pushy__btn--blue"
                 type= "submit"
                 >
-                Añadir
+                 Make task
                 </button>
             </div>
         </form>

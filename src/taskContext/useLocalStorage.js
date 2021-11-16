@@ -4,32 +4,32 @@ function useLocalStorage(itemName, initialValue) {
     const [error, setError] = React.useState(false);
     const [loading, setLoading] = React.useState(true);
     const [item, setItem] = React.useState(initialValue);
-    
+    const baseUrl = 'http://127.0.0.1:8000/api/task/';  
   
     const saveItem =  async(method, body, id) =>{
-      console.log("id;;",id)
-      console.log("in get data");
+      setLoading(true);
       let featchUrl;
       let obj;
       switch (method) {
         case 'GET':
-          featchUrl = 'http://127.0.0.1:8000/api/task';
+          featchUrl = baseUrl;
           obj = {
             method: "get"
           }
           break;
         case 'POST':
-            console.log("body",body);
-            featchUrl ='http://127.0.0.1:8000/api/task';
+            featchUrl = baseUrl;
             obj = {
-              method: "get",
-              body: body 
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(body)
 
             }
           break;
-          case 'DELETE':
-            
-            featchUrl ='http://127.0.0.1:8000/api/task/'+id;
+        case 'DELETE':
+            featchUrl = baseUrl+id;
             obj = {
               method: "delete",
               headers: {
@@ -37,25 +37,38 @@ function useLocalStorage(itemName, initialValue) {
               },
             }
           break;
+        case 'PUT':
+            console.log("body",body,id);
+            featchUrl = baseUrl+id;
+            obj = {
+              method: "put",
+              headers: {
+                "Content-Type": "application/json"
+              },
+              body: JSON.stringify(body)
+            }
+          break;
         default:
           break;
       }
-      
-
       try {
-        console.log("url to delate",featchUrl);
         const response = await fetch(featchUrl,obj);
         if (!response.ok) {
           const message = 'Error with Status Code: ' + response.status;
           throw new Error(message);
         }
         const data = await response.json();
-        setItem(data);
+        if(method === 'GET'){ 
+          setItem(data);
+        }else{
+         // saveItem('GET');
+        }
         setLoading(false);
-        console.log(data);
+        console.log("response::",data);
       } catch (error) {
         setError(true);
-        console.log('Error: ' + error);
+        setLoading(false);
+        console.log('Error:::' + error);
       }
     }
     React.useEffect(() => {

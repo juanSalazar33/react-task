@@ -1,5 +1,4 @@
 import React from 'react';
-import { Container, Row, Col } from 'react-grid-system';
 import { TodoCounter } from '../todoCounter';
 import { TodoSearch } from '../todoSearch';
 import { TodoList } from '../todoList';
@@ -9,6 +8,7 @@ import { TaskContext } from '../taskContext';
 import { Modal } from '../modal';
 import { TaskForm } from '../taskForm';
 import { MyLoader } from '../loadingT';
+import { ErrorShow } from '../errorShow';
 
 
 import '../lib/pushy-buttons/css/pushy-buttons.css';
@@ -27,27 +27,7 @@ function AppUI(){
     } = React.useContext(TaskContext)
     return (
     <React.Fragment > 
-      {!loading &&  <div className="App">
-
-          <Container>
-            <Row>
-              <Col sm={6} xl={1} >
-                One of three columns
-              </Col>
-              <Col sm={6} xl={1} >
-                One of three columns
-              </Col>
-              <Col sm={6} xl={1} >
-                One of three columns
-              </Col>
-              <Col sm={6} xl={1} >
-                One of three columns
-              </Col>
-              <Col sm={6} xl={1} >
-                One of three columns
-              </Col>
-            </Row>
-          </Container>
+      {(!loading && !error) &&  <div className="App">
           <TodoCounter/>
           <TodoSearch/>
             <TodoList>
@@ -59,8 +39,8 @@ function AppUI(){
                 key={todo.id}
                 text={todo.text}
                 completed={todo.completed}
-                onComplete={() => completeTask(todo.text)}
-                onDelate={() => delateTask(todo.text)}
+                onComplete={() => completeTask(todo.id)}
+                onDelate={() => delateTask(todo.id)}
               />
             ))}
             </TodoList>
@@ -74,8 +54,10 @@ function AppUI(){
             openModal={openModal}
           ></CreateTodoButton>
           </div>} 
-      {loading &&<MyLoader/>}
 
+      {!!loading && <MyLoader/>}
+
+      {!!error && <ErrorShow/>}        
     </React.Fragment>
     );
 }

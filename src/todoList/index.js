@@ -1,13 +1,15 @@
 import React from 'react';
 import './TodoList.css'
 
+import { Container, Row } from 'react-grid-system';
+
 function TodoList(props) {
   return (
-    <section>
-      <ul>
+    <Container>
+      <Row>
         {props.children}
-      </ul>
-    </section>
+      </Row>
+    </Container>
   );
 }
 

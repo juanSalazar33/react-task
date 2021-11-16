@@ -1,31 +1,50 @@
 import React from 'react';
 import './TodoItem.css';
 
+import { Row, Col } from 'react-grid-system';
+
 function TodoItem(props) {
   return (
-    <li
-      className="TodoItem"
-    >
-      <button
-          className="Icon pushy__btn pushy__btn--md pushy__btn--green"
-          type= "button"
-          onClick={props.onComplete}
-          >
-           Completar
-      </button>
-      <p 
-        className={`TodoItem-p ${props.completed && 'TodoItem-p--complete'}`} 
-      >
-        {props.text}
-      </p>
-      <button
-          className="Icon pushy__btn pushy__btn--md pushy__btn--red"
-          type= "button"
-          onClick={props.onDelate}
-          >
-           Eliminar
-      </button>
-    </li>
+
+        <Col sm ={12} md = {5} lg = {4}>
+         <div 
+          className="TodoItem"
+        >
+          <Row className="TodoItem-p">
+            <Col sm ={12} md={12} lg ={12}>
+              <p 
+                className= {props.completed && 'TodoItem-p--complete'}
+              >
+                {props.text}
+              </p>
+            </Col>
+
+          </Row>
+          <Row className="buttons" >
+            <Col md={6} sm = {6} lg = {6}>
+            <button
+                className="pushy__btn pushy__btn--sm pushy__btn--green"
+                type= "button"
+                onClick={props.onComplete}
+                >
+                Complete
+            </button>
+            </Col>
+
+            <Col  md={6} sm = {6} lg = {6}>
+              <button
+                  className="pushy__btn pushy__btn--sm pushy__btn--red"
+                  type= "button"
+                  onClick={props.onDelate}
+                  >
+                  Delete
+              </button>
+            </Col>
+
+          </Row>
+         </div>
+        </Col>
+
   );
 }
 
