@@ -1,16 +1,18 @@
 .TodoItem {
   background-color: #FAFAFA;
-  height: 180px;
+  height: 200px;
   color: black;
   margin:24px 10px 30px  24px;
   border-radius: 5%;
 }
-
+.task-completed {
+  background-color: greenyellow !important;
+}
 .TodoItem-p {
   
-  font-size: 18px;
+  font-size: 16px !important;
   text-align: center;
-  height: 120px;
+  height: 180px;
 
 }
 

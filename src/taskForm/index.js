@@ -12,6 +12,7 @@ function TaskForm(){
 
     const onSubmit = (event) =>{
         event.preventDefault();
+        console.log("task",newTaskValue.length);
         addTask(newTaskValue);
         setOpenModal(false);
     }
@@ -29,8 +30,10 @@ function TaskForm(){
                 onChange = {onChange}
                 placeholder = "wrhite a new task"
             />
+            {(newTaskValue.length < 3) && <p>la tarea debe tener al menos 3 caracteres</p>}
             <div className="TodoForm-buttonContainer">
                 <button
+                disabled={(newTaskValue.length < 3)}
                 className="pushy__btn pushy__btn--lg pushy__btn--blue"
                 type= "submit"
                 >

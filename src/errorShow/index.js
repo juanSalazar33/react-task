@@ -3,14 +3,14 @@ import './errorShow.css';
 
 function ErrorShow(){
     return(
-        <section>
-          <h2>Se presento un error al conectar con el API</h2>
+        <section className="errorText">
+          <h2>An error occurred when connecting to the API</h2>
           <p>
-              porfavor intente estos pasos y recargue la pagina:
+             Please try these steps and reload the page:
           </p>
           <ul>
-              <li>Verfique que su servidor de apache y de mysql se encuentren encendidos</li>
-              <li>Verifique si la aplicación de backend esta enecendida correr comando <strong>php artisam serve</strong></li>
+              <li>Verify that your apache and mysql server are turned on</li>
+              <li>Check if the backend application is on, run <strong>php artisam serve</strong></li>
           </ul>
         </section>
 

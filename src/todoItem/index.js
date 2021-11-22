@@ -5,10 +5,9 @@ import { Row, Col } from 'react-grid-system';
 
 function TodoItem(props) {
   return (
-
         <Col sm ={12} md = {5} lg = {4}>
          <div 
-          className="TodoItem"
+          className={`${props.completed  ? 'TodoItem task-completed' : 'TodoItem'}`}
         >
           <Row className="TodoItem-p">
             <Col sm ={12} md={12} lg ={12}>
@@ -21,15 +20,15 @@ function TodoItem(props) {
 
           </Row>
           <Row className="buttons" >
-            <Col md={6} sm = {6} lg = {6}>
-            <button
+          {!props.completed &&  <Col md={6} sm = {6} lg = {6}>
+             <button
                 className="pushy__btn pushy__btn--sm pushy__btn--green"
                 type= "button"
                 onClick={props.onComplete}
                 >
                 Complete
             </button>
-            </Col>
+            </Col> }
 
             <Col  md={6} sm = {6} lg = {6}>
               <button

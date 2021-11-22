@@ -8,7 +8,7 @@ form {
     flex-direction: column;
   }
   
-  label {
+  label, p {
     text-align: center;
     color: black;
     font-size: 22px;

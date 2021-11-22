@@ -55,7 +55,7 @@ function AppUI(){
           ></CreateTodoButton>
           </div>} 
 
-      {!!loading && <MyLoader/>}
+      {!!loading && <div className="centerLoader"><MyLoader/></div>}
 
       {!!error && <ErrorShow/>}        
     </React.Fragment>

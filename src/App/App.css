@@ -3,6 +3,10 @@
   margin: 0% 10% 0% 10%;
 }
 
+.centerLoader {
+  text-align: center;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;

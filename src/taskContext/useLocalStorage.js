@@ -61,7 +61,7 @@ function useLocalStorage(itemName, initialValue) {
         if(method === 'GET'){ 
           setItem(data);
         }else{
-         // saveItem('GET');
+         saveItem('GET');
         }
         setLoading(false);
         console.log("response::",data);
@@ -71,6 +71,7 @@ function useLocalStorage(itemName, initialValue) {
         console.log('Error:::' + error);
       }
     }
+
     React.useEffect(() => {
       saveItem('GET');
       console.log("data ready");
